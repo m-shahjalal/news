@@ -1,37 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useContext } from 'react';
 import './App.css';
+import Header from './components/Header/Header';
+import News from './components/News/News';
+import Pagination from './components/Pagination/Pagination';
+import wave from './images/wave.png';
+import Spinner from './components/Spinner/Spinner';
+import { GlobalContext } from './context/GlobalState';
 
 function App() {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
+  const { news } = useContext(GlobalContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div className="app">
+      <div className="wave">
+        <img src={wave} alt="wave" />
+      </div>
+      <Header />
+      <News />
     </div>
   );
 }
